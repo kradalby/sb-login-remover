@@ -6,7 +6,15 @@ function removeOverlay() {
     console.log("Removed AID overlay")
 }
 
+
 console.log("script started")
     
-window.setTimeout(removeOverlay, 300);
+var observer = new WebKitMutationObserver(function() {
+    if (document.querySelector("#aid-overlay")) {
+        removeOverlay();
+    }
+});
+
+observer.observe(document, {childList: true, subtree: true});
+
 
